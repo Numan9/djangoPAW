@@ -1,0 +1,1 @@
+web: gunicorn sdql_backend.wsgi --log-file -
