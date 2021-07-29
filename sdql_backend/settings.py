@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-aui%oz57+z4hdrf_1m3yhv$%+s8cm^fz0_x2@bat_7748aww1r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sdql-testapp.herokuapp.com']
+#ALLOWED_HOSTS = ['sdql-testapp.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sdql_apis',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

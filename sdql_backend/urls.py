@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from sdql_apis import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('query_result/', views.query_result),
 ]
