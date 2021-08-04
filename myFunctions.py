@@ -1,5 +1,4 @@
 import requests
-import json
 
 def get_data(query):
     h = { "token": "eS1waYB1pt5B","user": "jcurrey"}
