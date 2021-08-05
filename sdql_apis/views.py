@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 import myFunctions
 import format_1
 import main_format_2
+import format_3
 
 # Create your views here.
 @api_view(['GET', 'POST'])
@@ -13,10 +14,12 @@ def query_result(req):
     queryString = req.data.get("query")
     print(queryString)
     json_data = myFunctions.get_data(queryString)
-    if(json_data["headers"] == ['date', 'season', 'day', 'site', 'week', 'line', 'total', 'overtime', 't:team', 't:points', 't:rushes', 't:rushing yards', 't:passes', 't:passing yards', 't:completions', 't:quarter scores', 't:turnovers', 'o:team', 'o:points', 'o:rushes', 'o:rushing yards', 'o:passes', 'o:passing yards', 'o:completions', 'o:quarter scores', 'o:turnovers']):
+    if json_data["headers"] == ['date', 'season', 'day', 'site', 'week', 'line', 'total', 'overtime', 't:team', 't:points', 't:rushes', 't:rushing yards', 't:passes', 't:passing yards', 't:completions', 't:quarter scores', 't:turnovers', 'o:team', 'o:points', 'o:rushes', 'o:rushing yards', 'o:passes', 'o:passing yards', 'o:completions', 'o:quarter scores', 'o:turnovers']:
         htmlStr = main_format_2.get_output_format(json_data)
-    elif (json_data["headers"] == ['t:team', 't:points', 'o:points', 't:line', 'total']):
+    elif json_data["headers"] == ['t:team', 't:points', 'o:points', 't:line', 'total']:
         htmlStr = format_1.get_output_format(json_data)
+    elif json_data["headers"] == ['date', 'team', 'o:team'] or json_data["headers"] == ['S(margin)'] or json_data["headers"] == ['date', 'game number', 'week', 'wins', 'ats margin', 'ats streak', 'attendance', 'passes', 'passing first downs', 'passing touchdowns', 'passing yards'] or json_data["headers"] == ['date', 'lead changes', 'line', 'losses', 'margin', 'margin after the first', 'margin after the third', 'margin at the half', 'matchup losses', 'matchup wins', 'money line', 'month', 'open line', 'open total']:
+        htmlStr = format_3.get_output_format(json_data)
     else:
         return HttpResponse(JSONRenderer().render({'htmlString': "<h1>Invalid Query</h1>"}), content_type='application/json')
     data = JSONRenderer().render({'htmlString': htmlStr})
