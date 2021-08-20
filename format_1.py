@@ -67,7 +67,7 @@ def calculate_SU(records):
 
 def get_output_format(json_data):
     htmlData = """
-    <table class="table">
+    <table id="myTable1" class="table">
     <thead>
         <tr>
         <th scope="col" style="color:#0800ff;">games</th>
@@ -82,6 +82,7 @@ def get_output_format(json_data):
     <tbody>"""
 
     for data in json_data["groups"]:
+        print(data["sdql as terms"])
         ats = calculate_ATS(data["columns"])
         avg_line = calculate_average_close_line(data["columns"])
         ou = calculate_OU(data["columns"])
@@ -94,9 +95,9 @@ def get_output_format(json_data):
         <td>{ou}</td>
         <td>{avg_total}</td>
         <td>{su}</td>
-        <td>{data["sdql as terms"][-3].split('=')[1]}</td>
+        <td>group</td>
         </tr>"""
-
+#<td>{data["sdql as terms"][-3].split('=')[1]}</td>
     htmlData += """</tbody>
     </table>
     """

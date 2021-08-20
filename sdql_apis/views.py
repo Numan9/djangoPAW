@@ -12,16 +12,17 @@ import format_3
 def query_result(req):
     htmlStr = ""
     queryString = req.data.get("query")
-    print(queryString)
-    json_data = myFunctions.get_data(queryString)
-    if json_data["headers"] == ['date', 'season', 'day', 'site', 'week', 'line', 'total', 'overtime', 't:team', 't:points', 't:rushes', 't:rushing yards', 't:passes', 't:passing yards', 't:completions', 't:quarter scores', 't:turnovers', 'o:team', 'o:points', 'o:rushes', 'o:rushing yards', 'o:passes', 'o:passing yards', 'o:completions', 'o:quarter scores', 'o:turnovers']:
-        htmlStr = main_format_2.get_output_format(json_data)
-    elif json_data["headers"] == ['t:team', 't:points', 'o:points', 't:line', 'total']:
+    json_data, format_no = myFunctions.get_data(queryString)
+    if len(json_data["headers"]) == 0:
+        return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
+    elif format_no == 1:
         htmlStr = format_1.get_output_format(json_data)
-    elif json_data["headers"] == ['date', 'team', 'o:team'] or json_data["headers"] == ['S(margin)'] or json_data["headers"] == ['date', 'game number', 'week', 'wins', 'ats margin', 'ats streak', 'attendance', 'passes', 'passing first downs', 'passing touchdowns', 'passing yards'] or json_data["headers"] == ['date', 'lead changes', 'line', 'losses', 'margin', 'margin after the first', 'margin after the third', 'margin at the half', 'matchup losses', 'matchup wins', 'money line', 'month', 'open line', 'open total']:
+    elif format_no == 2:
+        htmlStr = main_format_2.get_output_format(json_data)
+    elif format_no == 3:
         htmlStr = format_3.get_output_format(json_data)
     else:
-        return HttpResponse(JSONRenderer().render({'htmlString': "<h1>Invalid Query</h1>"}), content_type='application/json')
+        return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
     data = JSONRenderer().render({'htmlString': htmlStr})
     response = HttpResponse(data, content_type='application/json')
     # response["Access-Control-Allow-Origin"] = "*"
