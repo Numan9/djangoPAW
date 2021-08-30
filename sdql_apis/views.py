@@ -12,11 +12,11 @@ import format_3
 def query_result(req):
     htmlStr = ""
     queryString = req.data.get("query")
-    json_data, format_no = myFunctions.get_data(queryString)
+    json_data, format_no, grouper = myFunctions.get_data(queryString)
     if len(json_data["headers"]) == 0:
         return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
     elif format_no == 1:
-        htmlStr = format_1.get_output_format(json_data)
+        htmlStr = format_1.get_output_format(json_data, grouper)
     elif format_no == 2:
         htmlStr = main_format_2.get_output_format(json_data)
     elif format_no == 3:

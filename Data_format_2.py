@@ -1,4 +1,5 @@
 import ast
+from helperFunctions import calSum
 class Data_format_2:
     def __init__(self,date,season,day,site,week,closeline,closetotal,overtime,tteam,tpoints,trushes,trushingyards,tpasses,tpassingyards,
                  tcompletions,tquarters,tturnovers,oteam,opoints,orushes,orushingyards,opasses,opassingyards,ocompletions,oquarters,oturnovers):
@@ -487,45 +488,45 @@ class Data_format_2:
 
     #b7,8
     def trushesb7(self):
-        return round(sum(self.trushes) / len(self.trushes), 1)
+        return round(calSum(self.trushes) / len(self.trushes), 1)
     def orushesb8(self):
-        return round(sum(self.orushes) / len(self.orushes), 1)
+        return round(calSum(self.orushes) / len(self.orushes), 1)
 
     # c7,8
     def trushesyardsc7(self):
-        return round(sum(self.trushingyards) / len(self.trushingyards), 1)
+        return round(calSum(self.trushingyards) / len(self.trushingyards), 1)
     def orushesyardsc8(self):
-        return round(sum(self.orushingyards) / len(self.orushingyards), 1)
+        return round(calSum(self.orushingyards) / len(self.orushingyards), 1)
 
     # d7,8
     def tpassesd7(self):
-        return round(sum(self.tpasses) / len(self.tpasses), 1)
+        return round(calSum(self.tpasses) / len(self.tpasses), 1)
     def opassesd8(self):
-        return round(sum(self.opasses) / len(self.opasses), 1)
+        return round(calSum(self.opasses) / len(self.opasses), 1)
 
     # e7,8
     def tpassingyardse7(self):
-        return round(sum(self.tpassingyards) / len(self.tpassingyards), 1)
+        return round(calSum(self.tpassingyards) / len(self.tpassingyards), 1)
     def opassingyardse8(self):
-        return round(sum(self.opassingyards) / len(self.opassingyards), 1)
+        return round(calSum(self.opassingyards) / len(self.opassingyards), 1)
 
     # f7,8
     def tcompletionsf7(self):
-        return round(sum(self.tcompletions) / len(self.tcompletions), 1)
+        return round(calSum(self.tcompletions) / len(self.tcompletions), 1)
     def ocompletionsf8(self):
-        return round(sum(self.ocompletions) / len(self.ocompletions), 1)
+        return round(calSum(self.ocompletions) / len(self.ocompletions), 1)
 
     # g7,8
     def ttosg7(self):
-        return round(sum(self.tturnovers) / len(self.tturnovers), 1)
+        return round(calSum(self.tturnovers) / len(self.tturnovers), 1)
     def otosg8(self):
-        return round(sum(self.oturnovers) / len(self.oturnovers), 1)
+        return round(calSum(self.oturnovers) / len(self.oturnovers), 1)
 
     # l7,8
     def tfinall7(self):
-        return round(sum(self.points) / len(self.points), 1)
+        return round(calSum(self.points) / len(self.points), 1)
     def ofinall8(self):
-        return round(sum(self.opoints) / len(self.opoints), 1)
+        return round(calSum(self.opoints) / len(self.opoints), 1)
 
     def suml13season(self, thisseason):
         sum = []

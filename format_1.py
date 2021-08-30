@@ -20,7 +20,10 @@ def calculate_average_close_line(records):
     closeLine = 0
     for i in range(len(records[0])):
         closeLine += records[3][i]
-    return round(closeLine / len(records[0]), 1)
+    value = closeLine / len(records[0])
+    if value < 0 and round(value, 1) == 0:
+        return 0.0
+    return round(value, 1)
 
 
 def calculate_OU(records):
@@ -65,7 +68,7 @@ def calculate_SU(records):
         totalPointsOpponent += records[2][i]
     return f"{wCount}-{lCount}-{pCount} ({round((totalPoints / len(records[0])) - (totalPointsOpponent / len(records[0])), 2)}, {round((wCount / len(records[0])) * 100, 1)}%)"
 
-def get_output_format(json_data):
+def get_output_format(json_data, grouper):
     htmlData = """
     <table id="myTable1" class="table">
     <thead>
@@ -80,9 +83,11 @@ def get_output_format(json_data):
         </tr>
     </thead>
     <tbody>"""
-
     for data in json_data["groups"]:
-        print(data["sdql as terms"])
+        sdql_col = ""
+        for term in data["sdql as terms"]:
+            if grouper + "=" in term:
+                sdql_col = term.split('=')[1]
         ats = calculate_ATS(data["columns"])
         avg_line = calculate_average_close_line(data["columns"])
         ou = calculate_OU(data["columns"])
@@ -95,9 +100,8 @@ def get_output_format(json_data):
         <td>{ou}</td>
         <td>{avg_total}</td>
         <td>{su}</td>
-        <td>group</td>
+        <td>{sdql_col}</td>
         </tr>"""
-#<td>{data["sdql as terms"][-3].split('=')[1]}</td>
     htmlData += """</tbody>
     </table>
     """
