@@ -13,6 +13,7 @@ def add_paddings(c):
 def get_output_format(jsondata):
 
     headers = jsondata['headers']
+    headers.append('sdql as terms')
 
     columns = [d['columns'] for d in jsondata['groups']]
     sdqls = ["".join(d['sdql as terms']) for d in jsondata['groups']]

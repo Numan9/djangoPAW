@@ -1782,7 +1782,7 @@ def fnget_strings():
     strings.append('site')
     strings.append('surface')
     strings.append('team')
-    strings.append('time zone')
+    strings.append('time_zone')
     return strings
 
 
@@ -1790,8 +1790,8 @@ def fnget_strings():
 
 
 def fncolumn_format(data,headers,columns):
-    #headers = data['headers']
-    #headers.append('sdql as terms')
+    headers = data['headers']
+    headers.append('sdql as terms')
     columns = [d['columns'] for d in data['groups']]
     sdqls = ["".join(d['sdql as terms']) for d in data['groups']]
     
@@ -1815,7 +1815,7 @@ def fncolumn_format(data,headers,columns):
         for t in table:
             if t == headers:
                 continue
-            all_data.append(t)      
+            all_data.append(t)
 
     big_table = PrettyTable()
     big_table.field_names = headers
@@ -2335,12 +2335,11 @@ def fnget_sdql_data(new_querylist):
 
 
 def fnfix_strings(sdql_parts):
-
+    
     tsdql_parts=list()
     c=0
     for sp in sdql_parts:
-        #sp=sp.replace('time_zone','time zone')
-        
+        sp=sp.replace('time zone','time_zone')
         for string in strings:
             if string in sp:
                 c=c+1
@@ -2351,6 +2350,7 @@ def fnfix_strings(sdql_parts):
                     string_list=list()
                     bailout=0
                     string_list=sp.split("=")
+
                     if len(string_list)==2:
                         if string in string_list[0] and string in string_list[1]:
                             bailout=1
@@ -2381,10 +2381,11 @@ def fnfix_strings(sdql_parts):
                                     close_quote_pos=min(newpos_list)
                                 else:
                                     close_quote_pos=len(sp)
-                               
+                                sp=sp.replace('time_zone','time zone')
                                 if sp[close_quote_pos:close_quote_pos+1]!="'" and sp[close_quote_pos:close_quote_pos+1]!='"':
                                     sp=sp[:equal_pos]+"'"+sp[equal_pos:close_quote_pos]+"'"+sp[close_quote_pos:]
         tsdql_parts.append(sp)    
+    
     return (tsdql_parts)
 
 
@@ -2400,12 +2401,35 @@ def fnget_ordered_dict(replace_dict):
     return ordered_replace_dict
 
 
+# In[ ]:
+
+
+def fncheck_lines(sdql_data,lines,money_lines,totals):
+    new_sdql_data=list()
+    for s in sdql_data:
+        if 'line ' in s:
+            for l in lines:
+                if l in s and l+'[' not in s:
+                    s=s.replace(l,l+'[-1]')
+        if 'money line ' in s:
+            for ml in money_lines:
+                if ml in s and ml+'[' not in s:
+                    s=s.replace(ml,ml+'[-1]')
+        if 'total ' in s:
+            for t in totals:
+                if t in s and t+'[' not in s:
+                    s=s.replace(t,t+'[-1]')
+        new_sdql_data.append(s)
+        
+    return new_sdql_data
+
+
 def fnapi(sdql, groupby):
     column_format = group_format = 0
     converted_query = ''
     format_no = 1
-    sdql_parts = fnchop_sdql(sdql)
-    group_format, grouper = fngrouping_format_check(groupby,sdql_parts)
+    sdql_parts=fnchop_sdql(sdql)
+    group_format,grouper=fngrouping_format_check(groupby,sdql_parts)
     if group_format == 1:
         converted_query = "t:team,t:points,o:points,t:line,total@" + sdql
     else:
@@ -2431,6 +2455,24 @@ def get_converted_query(query):
 
 groupby=list()
 groupby=['RSWL','ats margin','ats streak','average punt yards','biggest lead','blocked extra points','blocked field goals','blocked punts','close line','close total','coach','completions','conference','date','day','division','dpa','dps','drives','field goals','field goals attempted','first downs','fourth downs attempted','fourth downs made','fumble return touchdowns','fumble return yards','fumbles','fumbles lost','game number','goal to go attempted','goal to go made','interception return yards','interception returns','interception touchdowns','interceptions','kicking extra points','kicking extra points attempted','kickoff return touchdowns','kickoff return yards','kickoff returns','kickoffs','kickoffs for touchback','kickoffs in end zone','lead changes','line','line sdb','losses','margin','margin after the first','margin after the third','margin at the half','matchup losses','matchup wins','money line','month','open line','open total','opponents','ou margin','ou streak','overtime','passes','passing first downs','passing touchdowns','passing yards','penalties','penalty first downs','penalty yards','playoffs','plays','points','punt return touchdowns','punt return yards','punt returns','punts','quarter scores','red zones attempted','red zones made','regular season wins line','rest','return yards','rushes','rushes for a loss','rushing first downs','rushing touchdowns','rushing yards','rushing yards lost','sack yards','sacks','safeties','scored first','season','site','site streak','snf','start time','streak','surface','team','temperature','third downs attempted','third downs made','time of possession','time zone','times tied','total','touchdowns','turnover margin','turnovers','two point conversion attempts','two point conversions','two point conversions attempted','week','wins']
+
+lines=list()
+money_lines=list()
+total=list()
+lines=['line ave',' line ave odds','line ce','line ce odds','line ci','line ci odds','line date','line dk','line dk odds','line fd','line fd odds','line lv','line lv odds','line mgm','line mgm odds','line mir','line mir odds','line pb','line pb odds','line sb','line sb odds','line sdb','line sh','line sh odds','line sp','line sp odds','line time','line ub','line ub odds','line wh','line wh odds']
+money_lines=['money line ave','money line ce','money line ci','money line dk','money line fd','money line lv','money line mgm','money line mir','money line pb','money line sb','money line sh','money line sp','money line ub','money line wh']
+totals=['total ave','total ave odds','total ci','total ci odds','total dk','total dk odds','total fd','total fd odds','total lv','total lv odds','total mgm','total mgm odds','total mir','total mir odds','total pb','total pb odds','total sb','total sb odds','total sh','total sh odds','total sp','total sp odds','total ub','total ub odds','total wh','total wh odds']
+
+
+linesB=list()
+money_linesB=list()
+totalB=list()
+for xline in lines:
+    linesB.append(xline+"[")
+for xmoney_line in money_lines:
+    money_linesB.append(xmoney_line+"[")
+for xtotal in totals:
+    totalB.append(xtotal+"[")
 
 splits=['+','-','/','*','@']
 parameters=list()
