@@ -548,25 +548,29 @@ def fnhas_operator(checkme,operators):
 def fnget_shortcuts():
     
     shortcuts=dict()
+
     shortcuts.update({"tS(M1)": "Sum((sum(quarter scores[:1])-sum(to:quarter scores[:1])) as 'M1'@ team and season) as 'tS(M1)'"})
     shortcuts.update({"tA(M1)": "average((sum(quarter scores[:1])-sum(to:quarter scores[:1])) as 'M1'@ team and season) as 'tA(M1)'"})
     shortcuts.update({"tpS(M1)": "(Sum((sum(quarter scores[:1])-sum(to:quarter scores[:1])) as 'M1'@ team and season)[ team and season-1]) as 'tpS(M1)'"})
     shortcuts.update({"oS(M1)": "Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M1'@ o:team and o:season) as 'oS(M1)'"})
     shortcuts.update({"oA(M1)": "average((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M1'@ o:team and o:season) as 'oA(M1)'"})
     shortcuts.update({"opS(M1)": "(Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M1'@ o:team and o:season)[ o:team and o:season-1]) as 'opS(M1)'"})
-    shortcuts.update({"tp:M1": "(sum(tp:quarter scores[:1])-sum(too:quarter scores[:1])) as 'tp:M1'"})
-    shortcuts.update({"to:M1": "(sum(to:quarter scores[:1])-sum(poo:quarter scores[:1])) as 'to:M1'"})
-    shortcuts.update({"op:M1": "(sum(op:quarter scores[:1])-sum(oto:quarter scores[:1])) as 'op:M1'"})
-    shortcuts.update({"t:M1": "(sum(t:quarter scores[:1])-sum(tp:quarter scores[:1])) as 't:M1'"})
-    shortcuts.update({"p:M1": "(sum(p:quarter scores[:1])-sum(to:quarter scores[:1])) as 'p:M1'"})
+    shortcuts.update({"tp:M1": "(sum(tp:quarter scores[:1])-sum(po:quarter scores[:1])) as 'tp:M1'"})
+    shortcuts.update({"to:M1": "(sum(to:quarter scores[:1])-sum(too:quarter scores[:1])) as 'to:M1'"})
+    shortcuts.update({"op:M1": "(sum(op:quarter scores[:1])-sum(opo:quarter scores[:1])) as 'op:M1'"})
+    shortcuts.update({"t:M1": "(sum(t:quarter scores[:1])-sum(to:quarter scores[:1])) as 't:M1'"})
+    shortcuts.update({"p:M1": "(sum(p:quarter scores[:1])-sum(po:quarter scores[:1])) as 'p:M1'"})
     shortcuts.update({"o:M1": "(sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M1'"})
     shortcuts.update({"M1": "(sum(quarter scores[:1])-sum(to:quarter scores[:1])) as 'M1'"})
-    shortcuts.update({"tS(M2)": "Sum((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M2'@ team and season) as 'tS(M2)'"})
-    shortcuts.update({"tA(M2)": "average((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M2'@ team and season) as 'tA(M2)'"})
-    shortcuts.update({"tpS(M2)": "(Sum((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M2'@ team and season)[ team and season-1]) as 'tpS(M2)'"})
-    shortcuts.update({"oS(M2)": "Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M2'@ o:team and o:season) as 'oS(M2)'"})
-    shortcuts.update({"oA(M2)": "average((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M2'@ o:team and o:season) as 'oA(M2)'"})
-    shortcuts.update({"opS(M2)": "(Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M2'@ o:team and o:season)[ o:team and o:season-1]) as 'opS(M2)'"})
+    
+    ######M1 & M2/M3 are different    
+    
+    shortcuts.update({"tS(M2)": "Sum((sum(quarter scores[:2])-sum(tp:quarter scores[:2])) as 'M2'@ team and season) as 'tS(M2)'"})
+    shortcuts.update({"tA(M2)": "average((sum(quarter scores[:2])-sum(tp:quarter scores[:2])) as 'M2'@ team and season) as 'tA(M2)'"})
+    shortcuts.update({"tpS(M2)": "(Sum((sum(quarter scores[:2])-sum(tp:quarter scores[:2])) as 'M2'@ team and season)[ team and season-1]) as 'tpS(M2)'"})
+    shortcuts.update({"oS(M2)": "Sum((sum(o:quarter scores[:2])-sum(oo:quarter scores[:2])) as 'o:M2'@ o:team and o:season) as 'oS(M2)'"})
+    shortcuts.update({"oA(M2)": "average((sum(o:quarter scores[:2])-sum(oo:quarter scores[:2])) as 'o:M2'@ o:team and o:season) as 'oA(M2)'"})
+    shortcuts.update({"opS(M2)": "(Sum((sum(o:quarter scores[:2])-sum(oo:quarter scores[:2])) as 'o:M2'@ o:team and o:season)[ o:team and o:season-1]) as 'opS(M2)'"})
     shortcuts.update({"tp:M2": "(sum(tp:quarter scores[:2])-sum(too:quarter scores[:2])) as 'tp:M2'"})
     shortcuts.update({"to:M2": "(sum(to:quarter scores[:2])-sum(poo:quarter scores[:2])) as 'to:M2'"})
     shortcuts.update({"op:M2": "(sum(op:quarter scores[:2])-sum(oto:quarter scores[:2])) as 'op:M2'"})
@@ -574,12 +578,13 @@ def fnget_shortcuts():
     shortcuts.update({"p:M2": "(sum(p:quarter scores[:2])-sum(to:quarter scores[:2])) as 'p:M2'"})
     shortcuts.update({"o:M2": "(sum(o:quarter scores[:2])-sum(oo:quarter scores[:2])) as 'o:M2'"})
     shortcuts.update({"M2": "(sum(quarter scores[:2])-sum(to:quarter scores[:2])) as 'M2'"})
-    shortcuts.update({"tS(M3)": "Sum((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M3'@ team and season) as 'tS(M3)'"})
-    shortcuts.update({"tA(M3)": "average((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M3'@ team and season) as 'tA(M3)'"})
-    shortcuts.update({"tpS(M3)": "(Sum((sum(quarter scores[:1])-sum(tp:quarter scores[:1])) as 'M3'@ team and season)[ team and season-1]) as 'tpS(M3)'"})
-    shortcuts.update({"oS(M3)": "Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M3'@ o:team and o:season) as 'oS(M3)'"})
-    shortcuts.update({"oA(M3)": "average((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M3'@ o:team and o:season) as 'oA(M3)'"})
-    shortcuts.update({"opS(M3)": "(Sum((sum(o:quarter scores[:1])-sum(oo:quarter scores[:1])) as 'o:M3'@ o:team and o:season)[ o:team and o:season-1]) as 'opS(M3)'"})
+    
+    shortcuts.update({"tS(M3)": "Sum((sum(quarter scores[:3])-sum(tp:quarter scores[:3])) as 'M3'@ team and season) as 'tS(M3)'"})
+    shortcuts.update({"tA(M3)": "average((sum(quarter scores[:3])-sum(tp:quarter scores[:3])) as 'M3'@ team and season) as 'tA(M3)'"})
+    shortcuts.update({"tpS(M3)": "(Sum((sum(quarter scores[:3])-sum(tp:quarter scores[:3])) as 'M3'@ team and season)[ team and season-1]) as 'tpS(M3)'"})
+    shortcuts.update({"oS(M3)": "Sum((sum(o:quarter scores[:3])-sum(oo:quarter scores[:3])) as 'o:M3'@ o:team and o:season) as 'oS(M3)'"})
+    shortcuts.update({"oA(M3)": "average((sum(o:quarter scores[:3])-sum(oo:quarter scores[:3])) as 'o:M3'@ o:team and o:season) as 'oA(M3)'"})
+    shortcuts.update({"opS(M3)": "(Sum((sum(o:quarter scores[:3])-sum(oo:quarter scores[:3])) as 'o:M3'@ o:team and o:season)[ o:team and o:season-1]) as 'opS(M3)'"})
     shortcuts.update({"tp:M3": "(sum(tp:quarter scores[:3])-sum(too:quarter scores[:3])) as 'tp:M3'"})
     shortcuts.update({"to:M3": "(sum(to:quarter scores[:3])-sum(poo:quarter scores[:3])) as 'to:M3'"})
     shortcuts.update({"op:M3": "(sum(op:quarter scores[:3])-sum(oto:quarter scores[:3])) as 'op:M3'"})
@@ -587,6 +592,8 @@ def fnget_shortcuts():
     shortcuts.update({"p:M3": "(sum(p:quarter scores[:3])-sum(to:quarter scores[:3])) as 'p:M3'"})
     shortcuts.update({"o:M3": "(sum(o:quarter scores[:3])-sum(oo:quarter scores[:3])) as 'o:M3'"})
     shortcuts.update({"M3": "(sum(quarter scores[:3])-sum(to:quarter scores[:3])) as 'M3'"})
+    
+    
     shortcuts.update({"tS(ATSL)": "Sum((points+line<tp:points) as 'ATSL')"})
     shortcuts.update({"tpS(ATSL)": "(Sum((points+line<tp:points) as 'ATSL'@ team and season)[ team and season-1]) as 'tpS(ATSL)"})
     shortcuts.update({"tA(ATSL)": "average((points+line<tp:points) as 'ATSL'@ team and season) as 'tA(ATSL)'"})
@@ -1374,13 +1381,13 @@ def fnget_shortcuts():
     shortcuts.update({"oS(TD)": "Sum((1*o:touchdowns) as 'o:TD'@ o:team and o:season) as 'oS(TD)'"})
     shortcuts.update({"oA(TD)": "average((1*o:touchdowns) as 'o:TD'@ o:team and o:season) as 'oS(TD)'"})
     shortcuts.update({"opS(TD)": "(Sum((1*touchdowns) as 'TD'@ team and season)[ team and season-1]) as 'tpS(TD)'"})
-    shortcuts.update({"TD": "(1*touchdowns) as 'TD'"})
     shortcuts.update({"tp:TD": "(1*tp:touchdowns) as 'to:TD'"})
     shortcuts.update({"to:TD": "(1*to:touchdowns) as 'to:TD'"})
     shortcuts.update({"op:TD": "(1*op:touchdowns) as 'op:TD'"})
     shortcuts.update({"t:TD": "(1*t:touchdowns) as 't:TD'"})
     shortcuts.update({"p:TD": "(1*p:touchdowns) as 'p:TD'"})
     shortcuts.update({"o:TD": "(1*o:touchdowns) as 'o:TD'"})
+    shortcuts.update({"TD": "(1*touchdowns) as 'TD'"})
     shortcuts.update({"tS(AWP)": "Sum((average(100*(((0<Team:points-Team:o:points) as 'W' or (0<Team:o:points-Team:points) as 'L' or 1/0) and (0<Team:points-Team:o:points) as 'W')@team and season and site='away')) as 'AWP'@ team and season) as 'tS(AWP)' "})
     shortcuts.update({"tA(AWP)": "average((average(100*(((0<Team:points-Team:o:points) as 'W' or (0<Team:o:points-Team:points) as 'L' or 1/0) and (0<Team:points-Team:o:points) as 'W')@team and season and site='away')) as 'AWP'@ team and season) as 'tS(AWP)' "})
     shortcuts.update({"tpS(AWP)": "(Sum((average(100*(((0<Team:points-Team:o:points) as 'W' or (0<Team:o:points-Team:points) as 'L' or 1/0) and (0<Team:points-Team:o:points) as 'W')@team and season and site='away')) as 'AWP'@ team and season)[ team and season-1]) as 'tpS(AWP)'"})
@@ -1420,6 +1427,11 @@ def fnget_shortcuts():
     shortcuts.update({"p:WP": "(average(100*(((0<Team:p:points-Team:to:points) as 'p:W' or (0<Team:to:points-Team:p:points) as 'p:L' or 1/0) and (0<Team:p:points-Team:to:points) as 'p:W')@p:team and p:season and p:season=season)) as 'p:WP'"})
     shortcuts.update({"o:WP": "(average(100*(((0<Team:o:points-Team:oo:points) as 'o:W' or (0<Team:oo:points-Team:o:points) as 'o:L' or 1/0) and (0<Team:o:points-Team:oo:points) as 'o:W')@o:team and o:season)) as 'o:WP'"})
     shortcuts.update({"WP": "(average(100*(((0<Team:points-Team:o:points) as 'W' or (0<Team:o:points-Team:points) as 'L' or 1/0) and (0<Team:points-Team:o:points) as 'W')@team and season)) as 'WP'"})
+    shortcuts.update({"SNF": "day='Sunday' and start time>2000 as 'SNF'"})
+    shortcuts.update({"MNF": "day='Monday' as 'MNF'"})
+    
+    
+    ############### single cuts
     shortcuts.update({"tS(A)": "Sum((site=='away') as 'A'@ team and season) as 'tS(A)'"})
     shortcuts.update({"tA(A)": "average((site=='away') as 'A'@ team and season) as 'tS(A)'"})
     shortcuts.update({"tpS(A)": "(Sum((site=='away') as 'A'@ team and season)[ team and season-1]) as 'tpS(A)'"})
@@ -1625,7 +1637,7 @@ def fnstrip_alias(q):
         #print(newq)
 
     
-    return
+    return newq
 
 
 # In[ ]:
@@ -1783,6 +1795,7 @@ def fnget_strings():
     strings.append('surface')
     strings.append('team')
     strings.append('time_zone')
+    
     return strings
 
 
@@ -2017,9 +2030,14 @@ def fnget_summative_start_end(string):
 def fnget_num_past_season(sumdata):
 
     num_past_season=0
-    sum_pos=sumdata.find('tp')
+    tsumdata=fnstrip_alias(sumdata)
+    sum_pos=tsumdata.find('tp')
+    
     if sum_pos<0:
-        sum_pos=sumdata.find('op')
+        sum_pos=tsumdata.find('op')
+    if ':' in tsumdata[sum_pos+1:sum_pos+3]:
+        sum_pos=-1                   
+    
     if sum_pos>=0:
         if sumdata[sum_pos+2:sum_pos+3]!=":" and sumdata[sum_pos+2:sum_pos+3]!="o" and sumdata[sum_pos+2:sum_pos+3]!="(":    
 
@@ -2036,8 +2054,7 @@ def fnget_num_past_season(sumdata):
                     t2=sumdata[2:sumdata.find('(')-1]
                     t3=sumdata[sumdata.find('(')-1:]
                     num_past_season=len(t2)
-                    sumdata=sumdata[:1]+sumdata[2+num_past_season:]                
-
+                    sumdata=sumdata[:1]+sumdata[2+num_past_season:]                         
     return sumdata,num_past_season
 
 
@@ -2048,6 +2065,7 @@ def fnget_num_past_season(sumdata):
 
 def fnexpand_t(query,num_past_season):
     
+    #query="tS((0<Team:o:points-Team:points) as 'L'@division=o:division)"
     #query="/ (tS(plays)+tS(o:plays))" #needs -1 in inside_parts
     #query=nq
     #query="tS(rushes@(site=='home') as 'H')"
@@ -2097,14 +2115,15 @@ def fnexpand_t(query,num_past_season):
 
         if 'tS' in query or 'tA' in query:
             query=query.replace('tS(','Sum(').replace('tA(','Average(')
-
         at_pos=query.find('@')
         if at_pos>0:
-            as_pos=query[at_pos+1:].find(' as ')
-            if as_pos>0:
-                new_query=query[:at_pos]+query[at_pos:].replace(' as ',' and team and season as ',1)
-            else:
-                new_query=query[:at_pos]+query[at_pos:].replace(' as ',' and team and season as ',1)
+            #as_pos=query[at_pos+1:].find(' as ')
+            #if as_pos>0:
+            #    new_query=query[:at_pos]+query[at_pos:].replace(' as ',' and team and season as ',1)
+            #else:
+            #    new_query=query[:at_pos]+query[at_pos:].replace(' as ',' and team and season as ',1)
+            new_query=query[:at_pos+1]+"team and season and "+query[at_pos+1:] # this is new
+
         else:
             comma_pos=query.find(',')
             if comma_pos>0:
@@ -2115,7 +2134,7 @@ def fnexpand_t(query,num_past_season):
         
         if num_past_season!=0:
             new_query=new_query.replace('team and season','team and season'+str(-num_past_season))
-    
+        
     #print(new_query)
     
     return new_query
@@ -2127,7 +2146,7 @@ def fnexpand_t(query,num_past_season):
 def fnexpand_o(query,num_past_season):
     
     #query="/ (tS(plays)+tS(o:plays))" #needs -1 in inside_parts
-    
+    #query=nq
     #query="tS(rushes@(site=='home') as 'H')"
     #query="tS((0<Team:points-Team:o:points) as 'W'@(site=='home') as 'H')"
     #query="tS(rushes@(site=='home') as 'H')"
@@ -2151,7 +2170,7 @@ def fnexpand_o(query,num_past_season):
         for ip in inside_parts:
             as_words=' as '+"'"+ip+"'"
             if 'oS' in ip or 'oA' in ip:
-                ip=ip.replace('oS(','Sum(').replace('oA(','Average(')
+                ip=ip.replace('oS(','Sum(o:').replace('oA(','Average(o:')
                 condition_pos=ip.find(',')
                 if condition_pos<0:
                     condition_pos=ip.find(')')
@@ -2174,8 +2193,8 @@ def fnexpand_o(query,num_past_season):
     else:
 
         if 'oS' in query or 'oA' in query:
-            query=query.replace('oS(','Sum(').replace('oA(','Average(')
-        
+            query=query.replace('oS(','Sum(o:').replace('oA(','Average(o:')
+
         at_pos=query.find('@')
         if at_pos>0:
             as_pos=query[at_pos+1:].find(' as ')
@@ -2184,10 +2203,15 @@ def fnexpand_o(query,num_past_season):
             else:
                 new_query=query[:at_pos]+query[at_pos:].replace(' as ',' and o:team and o:season as ',1)
         else:
-            new_query=query[:len(query)-1]+' and o:team and o:season '+query[len(query)-1:]
+            comma_pos=query.find(',')
+            if comma_pos>0:
+
+                new_query=query[:comma_pos]+' @o:team and o:season '+query[comma_pos:]
+            else:
+                new_query=query[:len(query)-1]+' @o:team and o:season '+query[len(query)-1:]
         
         if num_past_season!=0:
-            new_query=new_query.replace('and o:team and o:season','and o:team and o:season'+str(-num_past_season))
+            new_query=new_query.replace('o:team and o:season','o:team and o:season'+str(-num_past_season))
     
     #print(new_query)
     
@@ -2247,45 +2271,60 @@ def fnget_replace_dict(expanded_querylist):
 # In[ ]:
 
 
-# def fnget_parameters_conditions(q):
-#     ########### NOT used, being developed
-#     parameters=''
-#     conditions=''
-#     if query.find('@')<0:
-#         parameters=query
-#     else:
-#         q=query+" "
-#         qlen=len(q)
-#         leftp=rightp=0
-#         spos=0
-#         for j in range(spos,qlen):
-#             #print('Character',j,q[j:j+1])
-#             if q[j:j+1]=="(":
-#                 leftp+=1
-#             if q[j:j+1]==")":
-#                 rightp+=1
-#             if q[j:j+1]=='@':
-#                 if leftp==rightp:
+def fnget_parameters_conditions(q):
+    ########### NOT used, being developed
+    parameters=''
+    conditions=''
+    if query.find('@')<0:
+        parameters=query
+    else:
+        q=query+" "
+        qlen=len(q)
+        leftp=rightp=0
+        spos=0
+        for j in range(spos,qlen):
+            #print('Character',j,q[j:j+1])
+            if q[j:j+1]=="(":
+                leftp+=1
+            if q[j:j+1]==")":
+                rightp+=1
+            if q[j:j+1]=='@':
+                if leftp==rightp:
                     
-#                     parameters=q[:j]
-#                     conditions=q[J+2:]
-#                     j=qlen+5
-#                     break
-#     if parameters=='':
-#         parameters=q
-#     return parameters,conditions
+                    parameters=q[:j]
+                    conditions=q[J+2:]
+                    j=qlen+5
+                    break
+    if parameters=='':
+        parameters=q
+    return parameters,conditions
 
 
 # In[ ]:
 
 
 def fnget_newquery_list(expanded_querylist,ordered_replace_dict):
+
     c=0
     new_querylist=list()
 
     for part in expanded_querylist:
         c+=1
+        colon_pos=part.find(':')
+        _p=0
+        replacep=''
+        if colon_pos>0:
+            prefix=part[:colon_pos]
+            _p=fncount_p(prefix)
+            if _p>1:
+                opart=part
+                for x in range(0,_p):
+                    replacep=replacep+'p'
+                    
+                part=part.replace(replacep,'p')
+                part=part.replace('p'+str(_p),'p')
         #print(part,c)
+
         if len(ordered_replace_dict)>0:
             for key,value in ordered_replace_dict.items():
                 if part.find(key)>=0:
@@ -2293,18 +2332,23 @@ def fnget_newquery_list(expanded_querylist,ordered_replace_dict):
                     as_pos=part.find(' as ')
                     as_part=''
                     part1=part
-
+                    if len(replacep)>1:
+                        value=value.replace('p:',replacep+':') 
                     if as_pos>=0:
                         as_part=part[as_pos:]
                         part=part[:as_pos].replace(key,value)+as_part
                     else:
                         part=part.replace(key,value)
+             
                     #print('newpart',part)
 
             new_querylist.append(part)
             #print('Added',part)
         else:    
             new_querylist.append(part)
+
+    #print(new_querylist)
+    
     return new_querylist
 
 
@@ -2319,11 +2363,13 @@ def fnget_sdql_data(new_querylist):
         #print('nq start',nq)
         if nq.find('tp')>=0 or nq.find('op')>=0:
             nq,num_past_season=fnget_num_past_season(nq)
-
+            
         else:
             num_past_season=0
         if (nq.find('tS(')>=0 or nq.find('tA(')>=0) and nq.find('Sum(')<0 and nq.find('Average(')<0:
+            #print('in',nq)
             nq=fnexpand_t(nq,num_past_season)
+            #print('out',nq)
         if (nq.find('oS(')>=0 or nq.find('oA(')>=0) and nq.find('Sum(')<0 and nq.find('Average(')<0:
             nq=fnexpand_o(nq,num_past_season)
 
@@ -2350,21 +2396,28 @@ def fnfix_strings(sdql_parts):
                     string_list=list()
                     bailout=0
                     string_list=sp.split("=")
-
+                    
                     if len(string_list)==2:
-                        if string in string_list[0] and string in string_list[1]:
+                        if string in string_list[0] and string in string_list[1] and string!='day':
                             bailout=1
+                            
                     if not bailout:
                         if '==' in sp:
                             y='' # don't do anything                    
                         else:
-                            equal_pos=sp.find(string+' =')
+                            while sp.find(' =')>0:
+                                sp=sp.replace(' =','=')
+                            while sp.find('= ')>0:
+                                sp=sp.replace('= ','=')
+
+                            equal_pos=sp.find(string+'=')
                             if equal_pos>=0:
-                                equal_pos=equal_pos+len(string)+2
+                                equal_pos=equal_pos+len(string)+1
                             if equal_pos<0:
                                 equal_pos=sp.find(string+'=')
                                 if equal_pos>=0:
                                     equal_pos=equal_pos+len(string)+1
+                                
                             if equal_pos>=0:
                                 pos_list=list()
                                 pos_list.append(sp[equal_pos:].find(")"))
@@ -2377,15 +2430,19 @@ def fnfix_strings(sdql_parts):
                                 for pos in pos_list:
                                     if pos>=0:
                                         newpos_list.append(pos+equal_pos)
+
                                 if len(newpos_list)>0:
                                     close_quote_pos=min(newpos_list)
                                 else:
                                     close_quote_pos=len(sp)
                                 sp=sp.replace('time_zone','time zone')
+
                                 if sp[close_quote_pos:close_quote_pos+1]!="'" and sp[close_quote_pos:close_quote_pos+1]!='"':
+
                                     sp=sp[:equal_pos]+"'"+sp[equal_pos:close_quote_pos]+"'"+sp[close_quote_pos:]
+                         
         tsdql_parts.append(sp)    
-    
+        
     return (tsdql_parts)
 
 
@@ -2407,18 +2464,24 @@ def fnget_ordered_dict(replace_dict):
 def fncheck_lines(sdql_data,lines,money_lines,totals):
     new_sdql_data=list()
     for s in sdql_data:
-        if 'line ' in s:
-            for l in lines:
-                if l in s and l+'[' not in s:
-                    s=s.replace(l,l+'[-1]')
-        if 'money line ' in s:
-            for ml in money_lines:
-                if ml in s and ml+'[' not in s:
-                    s=s.replace(ml,ml+'[-1]')
-        if 'total ' in s:
-            for t in totals:
-                if t in s and t+'[' not in s:
-                    s=s.replace(t,t+'[-1]')
+        if 'lines ' in s:
+            s=s.replace('lines ','line ')
+        else:
+            if 'line ' in s:
+                for l in lines:
+                    if l in s and l+'[' not in s:
+                        s=s.replace(l,l+'[-1]')
+            if 'money line ' in s:
+                for ml in money_lines:
+                    if ml in s and ml+'[' not in s:
+                        s=s.replace(ml,ml+'[-1]')
+        if 'totals ' in s:
+            s=s.replace('totals ','total ')
+        else:
+            if 'total ' in s:
+                for t in totals:
+                    if t in s and t+'[' not in s:
+                        s=s.replace(t,t+'[-1]')
         new_sdql_data.append(s)
         
     return new_sdql_data
@@ -2443,13 +2506,15 @@ def fnapi(sdql, groupby):
     return converted_query, format_no, grouper
 
 def get_converted_query(query):
+    query=query.replace('NFC','nfc').replace('AFC','afc').replace('West','west').replace('Central','central').replace('North','north')
     expanded_querylist=fnget_expanded_querylist(query)
     replace_dict=fnget_replace_dict(expanded_querylist)
     ordered_replace_dict=fnget_ordered_dict(replace_dict)
     new_querylist=fnget_newquery_list(expanded_querylist,ordered_replace_dict)
     sdql_data=fnget_sdql_data(new_querylist)
     sdql_data=fnfix_strings(sdql_data)
-    sdql=' '.join(sdql_data).replace('Team:','').replace('> =','>=').replace('< =','<=').replace('average','Average')
+    sdql_data=fncheck_lines(sdql_data,lines,money_lines,totals)
+    sdql=' '.join(sdql_data).replace('Team:','').replace('> =','>=').replace('< =','<=').replace('average','Average').replace('nfc','NFC').replace('afc','AFC').replace('west','West').replace('central','Central').replace('north','North').replace('o:o:','oo:')
     converted_query, format_no, grouper = fnapi(sdql, groupby)
     return converted_query, format_no, grouper
 
@@ -2492,4 +2557,8 @@ for sc_key,sc_value in shortcuts.items():
     newshortcuts.update({sc_key: sc_value})
     if sc_key[:2]=='t:':
         newshortcuts.update({sc_key.replace('t:','n:'): sc_value.replace('t:','n:')})
+        newshortcuts.update({sc_key.replace('t:','P:'): sc_value.replace('t:','P:')})
+    if sc_key[:3]=='op:':
+        newshortcuts.update({sc_key.replace('op:','po:'): sc_value.replace('op:','po:')})
+    
 shortcuts=newshortcuts

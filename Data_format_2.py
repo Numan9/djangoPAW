@@ -1218,7 +1218,6 @@ class Data_format_2:
         return sum
     # B3
     def ATS(self):
-
         x = 0
         y = 0
         z = 0
