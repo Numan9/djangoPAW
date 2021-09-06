@@ -2,9 +2,9 @@ import requests
 import query_converter
 import time
 
-def get_data(query):
+def get_data(query, sport):
     h = { "token": "eS1waYB1pt5B","user": "jcurrey"}
-    url = 'https://s3.sportsdatabase.com/NFL/query.json'
+    url = 'https://s3.sportsdatabase.com/' + sport + '/query.json'
     #t1 = time.time()
     converted_query, format_no, grouper = query_converter.get_converted_query(query)
     #t2 = time.time()

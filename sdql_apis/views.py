@@ -13,8 +13,9 @@ import time
 def query_result(req):
     htmlStr = ""
     queryString = req.data.get("query")
+    sport = req.data.get("sport")
     #time1 = time.time()
-    json_data, format_no, grouper = myFunctions.get_data(queryString)
+    json_data, format_no, grouper = myFunctions.get_data(queryString, sport)
     #time2 = time.time()
     #print("Time 1:", time2 - time1)
     if len(json_data["headers"]) == 0:

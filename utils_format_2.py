@@ -1,21 +1,6 @@
 from Data_format_2 import Data_format_2
 import datetime
 
-# def checkseason(list1, list2):
-#     result = False
-#     # traverse in the 1st list
-#     for x in list1:
-#         # traverse in the 2nd list
-#         for y in list2:
-#             # if one common
-#             if str(x) in str(y):
-#                 result = True
-#                 return result
-#     return False
-
-# def f(msg):
-#     return "<td>"+str(msg)+"</td>"
-
 def checkseason(list1, list2):
     result = False
     # traverse in the 1st list
