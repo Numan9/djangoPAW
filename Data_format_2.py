@@ -1,7 +1,6 @@
 import ast
 from helperFunctions import calSum
 
-import ast
 class Data_format_2:
     def __init__(self,date,season,day,site,week,closeline,closetotal,overtime,tteam,tpoints,trushes,trushingyards,tpasses,tpassingyards,
                  tcompletions,tquarters,tturnovers,oteam,opoints,orushes,orushingyards,opasses,opassingyards,ocompletions,oquarters,oturnovers):
@@ -364,6 +363,7 @@ class Data_format_2:
         sum = []
         for (p, op, ct) in zip(self.points, self.opoints, self.closetotal):
             sum.append(ct-(p+op))
+            sum=sum*-1 #jc
         return sum
 
     def dpso13(self):
@@ -443,8 +443,14 @@ class Data_format_2:
             if p == op:
                 z = z + 1
             sum = sum + (p + cl - op)
-        v = (x / (x + y - z)) * 100
-        w = (sum) / (len(self.points))
+        try:
+            v = (x / (x + y - z)) * 100
+        except:
+            v=0
+        try:
+            w = (sum) / (len(self.points))
+        except:
+            w=0
         tie = 0
         m13 = self.atsmm13()
         for s in m13:
@@ -474,8 +480,14 @@ class Data_format_2:
             opsum = opsum + op
             psum = psum + p
             ctsum = ctsum + ct
-        v = (x / (x + y - z)) * 100
-        w = (ctsum-opsum-psum)/len(self.points)
+        try:
+            v = (x / (x + y - z)) * 100
+        except:
+            v=0
+        try:
+            w = (ctsum-opsum-psum)/len(self.points)
+        except:
+            w=0
         res = "{x}-{y}-{z} ({w:.1f},{v:.1f}%)".format(x=x, y=y, z=z, w=w, v=v)
         return res
 
@@ -494,7 +506,10 @@ class Data_format_2:
                 y = y + 1
             if p == op:
                 z = z + 1
-        v = (x / (x + y - z)) * 100
+        try:
+            v = (x / (x + y - z)) * 100
+        except:
+            v=0
         suml13 = self.suml13()
         tie = 0
         for s in suml13:
@@ -532,8 +547,11 @@ class Data_format_2:
         for s in m13:
             if s == 0:
                 tie = tie + 1
-        v = (x / (x + y - z)) * 100
-        w = (sum) / (total)
+        try:
+            v = (x / (x + y - z)) * 100
+            w = (sum) / (total)
+        except:
+            w=v=0
         if tie == 0:
             res = "{x}-{y} ({w:.1f},{v:.1f}%)".format(x=x, y=y, w=w, v=v)
         else:
@@ -564,8 +582,11 @@ class Data_format_2:
                 total = total + 1
         if total == 0:
             return self.OU()
-        v = (x / (x + y - z)) * 100
-        w = (ctsum-opsum-psum) / total
+        try:
+            v = (x / (x + y - z)) * 100
+            w = (ctsum-opsum-psum) / total
+        except:
+            w=v=0
         res = "{x}-{y}-{z} ({w:.1f},{v:.1f}%)".format(x=x, y=y, z=z, w=w, v=v)
         return res
 
@@ -596,7 +617,11 @@ class Data_format_2:
         for s in suml13:
             if s == 0:
                 tie = tie + 1
-        v = (x / (x + y - z)) * 100
+        try:
+            v = (x / (x + y - z)) * 100
+        except:
+            v=0
+
         if tie == 0:
             res = "{x}-{y} ({w:.1f},{v:.1f}%)".format(x=x, y=y, w=w, v=v)
         else:
