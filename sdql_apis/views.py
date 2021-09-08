@@ -34,67 +34,67 @@ def query_result(req):
     return response
 
 
-@api_view(['GET', 'POST'])
-def login(req):
-    email = req.data.get('email')
-    password = req.data.get('password')
-    print(email, password)
-    user = User.objects.filter(email=email).first()
+# @api_view(['GET', 'POST'])
+# def login(req):
+#     email = req.data.get('email')
+#     password = req.data.get('password')
+#     print(email, password)
+#     user = User.objects.filter(email=email).first()
 
-    if user is None:
-        #raise AuthenticationFailed('User not found')
-        return Response({'message': 'Not Found'})
+#     if user is None:
+#         #raise AuthenticationFailed('User not found')
+#         return Response({'message': 'Not Found'})
     
-    if not user.check_password(password):
-        #raise AuthenticationFailed('Incorrect password')
-        return Response({'message': 'Incorrect'})
+#     if not user.check_password(password):
+#         #raise AuthenticationFailed('Incorrect password')
+#         return Response({'message': 'Incorrect'})
     
-    payload = {
-        'id': user.id,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-        'iat': datetime.datetime.utcnow()
-    }
+#     payload = {
+#         'id': user.id,
+#         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+#         'iat': datetime.datetime.utcnow()
+#     }
 
-    token = jwt.encode(payload, 'secret', algorithm='HS256')
+#     token = jwt.encode(payload, 'secret', algorithm='HS256')
 
-    res = Response()
-    res.set_cookie(key='jwt', value=token, httponly=True)
+#     res = Response()
+#     res.set_cookie(key='jwt', value=token, httponly=True)
 
-    res.data = {
-        'message': 'Logged In'
-    }
+#     res.data = {
+#         'message': 'Logged In'
+#     }
 
-    return res
-
-
-@api_view(['GET', 'POST'])
-def register(req):
-    if not User.objects.filter(email=req.data.get('email')).exists():
-        serializer = UserSerializer(data=req.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({'message': 'R'})
-    else:
-        return Response({'message': 'A'})
+#     return res
 
 
-@api_view(['GET'])
-def checkAuthentication(req):
-    token = req.COOKIES.get('jwt')
-    if not token:
-        return Response({"message": "No Token"})
-    try:
-        payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-    except jwt.ExpiredSignatureError:
-        return Response({"message": "Expired Token"})
-    return Response({"message": "OK"})
+# @api_view(['GET', 'POST'])
+# def register(req):
+#     if not User.objects.filter(email=req.data.get('email')).exists():
+#         serializer = UserSerializer(data=req.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response({'message': 'R'})
+#     else:
+#         return Response({'message': 'A'})
 
 
-@api_view(['GET'])
-def logout(req):
-    res = Response()
-    res.delete_cookie('jwt')
-    res.data = {
-        'message': 'Logged Out'
-    }
-    return res
+# @api_view(['GET'])
+# def checkAuthentication(req):
+#     token = req.COOKIES.get('jwt')
+#     if not token:
+#         return Response({"message": "No Token"})
+#     try:
+#         payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+#     except jwt.ExpiredSignatureError:
+#         return Response({"message": "Expired Token"})
+#     return Response({"message": "OK"})
+
+
+# @api_view(['GET'])
+# def logout(req):
+#     res = Response()
+#     res.delete_cookie('jwt')
+#     res.data = {
+#         'message': 'Logged Out'
+#     }
+#     return res
