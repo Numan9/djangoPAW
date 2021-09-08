@@ -84,10 +84,11 @@ def get_output_format(json_data, grouper):
     </thead>
     <tbody>"""
     for data in json_data["groups"]:
-        sdql_col = ""
-        for term in data["sdql as terms"]:
-            if grouper + "=" in term:
-                sdql_col = term.split('=')[1]
+        sdql_col = "".join(data["sdql expanded terms"])
+        # for term in data["sdql as terms"]:
+        #     if grouper + "=" in term:
+        #         sdql_col = term.split('=')[1]
+
         ats = calculate_ATS(data["columns"])
         avg_line = calculate_average_close_line(data["columns"])
         ou = calculate_OU(data["columns"])
