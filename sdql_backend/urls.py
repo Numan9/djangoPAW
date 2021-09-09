@@ -20,8 +20,8 @@ from sdql_apis import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('query_result/', views.query_result),
-    # path('isAuthenticated/', views.checkAuthentication),
-    # path('register/', views.register),
-    # path('login/', views.login),
-    # path('logout/', views.logout),
+    path('isAuthenticated/', views.checkAuthentication),
+    path('register/', views.register),
+    path('login/', views.login),
+    path('logout/', views.logout),
 ]
