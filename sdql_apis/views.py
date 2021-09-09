@@ -61,7 +61,7 @@ def login(req):
     res.set_cookie(key='jwt', value=token, httponly=True)
 
     res.data = {
-        'message': 'Logged In'
+        'message': 'Logged In', "payload": payload, "token": token
     }
 
     return res
@@ -82,12 +82,12 @@ def register(req):
 def checkAuthentication(req):
     token = req.COOKIES.get('jwt')
     if not token:
-        return Response({"message": "No Token"})
+        return Response({"message": "No Token", "token": token})
     try:
         payload = jwt.decode(token, 'secret', algorithms=['HS256'])
     except jwt.ExpiredSignatureError:
-        return Response({"message": "Expired Token"})
-    return Response({"message": "OK"})
+        return Response({"message": "Expired Token", "token": token})
+    return Response({"message": "OK", "token": token})
 
 
 @api_view(['GET'])
