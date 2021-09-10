@@ -87,7 +87,7 @@ DATABASES = {
     # }
     'default': {
             'ENGINE': 'djongo',
-            'NAME': 'sdql_db',
+            'NAME': 'local_sdql',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://ahmad1024_:12#$qwRE@cluster0.mny7y.mongodb.net/sdql_db?retryWrites=true&w=majority'

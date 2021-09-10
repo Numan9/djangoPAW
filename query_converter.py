@@ -1195,6 +1195,11 @@ def fngrouping_format_check(groupby,check_data):
     new_check_data=list()
     for c in check_data:
         c=c.strip()
+        colon_pos=c.find(':')
+        if colon_pos>0:
+            #print('in',c)
+            c=c[colon_pos+1:]
+            #print('out',c)
         new_check_data.append(c)
     try:
         at_pos=new_check_data.index('@')
@@ -1217,7 +1222,6 @@ def fngrouping_format_check(groupby,check_data):
                     #print(item)
                     grouping=1
                     break
-    #print(grouping)
     
     return grouping,grouper
 
@@ -2045,7 +2049,7 @@ def get_converted_query(query):
     ordered_replace_dict=fnget_ordered_dict(replace_dict)
     new_querylist=fnget_newquery_list(expanded_querylist,ordered_replace_dict)
     sdql_data=fnget_sdql_data(new_querylist)
-
+    
     sdql_data=fnfix_strings(sdql_data)
     sdql_data=fncheck_lines(sdql_data,lines,money_lines,totals)
     sdql=' '.join(sdql_data).replace('Team:','').replace('> =','>=').replace('< =','<=').replace('average','Average').replace('nfc','NFC').replace('afc','AFC').replace('west','West').replace('central','Central').replace('north','North').replace('o:o:','oo:')
@@ -2072,6 +2076,7 @@ for xmoney_line in money_lines:
     money_linesB.append(xmoney_line+"[")
 for xtotal in totals:
     totalB.append(xtotal+"[")
+
 
 splits=['+','-','/','*','@']
 parameters=list()
