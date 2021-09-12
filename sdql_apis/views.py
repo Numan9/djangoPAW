@@ -18,20 +18,24 @@ def query_result(req):
     htmlStr = ""
     queryString = req.data.get("query")
     sport = req.data.get("sport")
-    json_data, format_no, grouper = myFunctions.get_data(queryString, sport)
-    if len(json_data["headers"]) == 0:
+    try:
+        json_data, format_no, grouper = myFunctions.get_data(queryString, sport)
+        print("Length", len(json_data["groups"][0]["columns"][0]))
+        if len(json_data["headers"]) == 0:
+            return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">No Match Found</h1>"}), content_type='application/json')
+        elif format_no == 1:
+            htmlStr = format_1.get_output_format(json_data, grouper)
+        elif format_no == 2:
+            htmlStr = main_format_2.get_output_format(json_data)
+        elif format_no == 3:
+            htmlStr = format_3.get_output_format(json_data)
+        else:
+            return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
+        data = JSONRenderer().render({'htmlString': htmlStr})
+        response = HttpResponse(data, content_type='application/json')
+        return response
+    except:
         return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
-    elif format_no == 1:
-        htmlStr = format_1.get_output_format(json_data, grouper)
-    elif format_no == 2:
-        htmlStr = main_format_2.get_output_format(json_data)
-    elif format_no == 3:
-        htmlStr = format_3.get_output_format(json_data)
-    else:
-        return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
-    data = JSONRenderer().render({'htmlString': htmlStr})
-    response = HttpResponse(data, content_type='application/json')
-    return response
 
 
 @api_view(['GET', 'POST'])
@@ -61,7 +65,7 @@ def login(req):
     res.set_cookie(key='jwt', value=token, httponly=True)
 
     res.data = {
-        'message': 'Logged In', "payload": payload, "token": token
+        'message': 'Logged In'
     }
 
     return res

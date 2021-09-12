@@ -216,6 +216,14 @@ def tohtml(data,thisseason):
         strRW = "<tr>"
         date = datetime.datetime.strptime(str(date), '%Y%m%d').strftime('%b %d, %Y')
 
+        # print(len(data.date),len(data.day),len(data.week),len(data.season),len(data.team),len(data.oteam),len(data.site),
+        #                                             len(data.q1()),len(data.q2()),len(data.q3()),len(data.q4()),len(data.finalpoints()),len(data.closeline),len(data.closetotal),
+        #                                                                  len(data.suml13()), len(data.atsmm13()), len(data.oumn13()),
+        #                                                                  len(data.dpso13()),
+        #                                                                  len(data.dpap13()), len(data.surq13()), len(data.atsr13()),
+        #                                                                  len(data.ours13()),len(data.overtime))
+        # print("Error: ", data.suml13(), len(data.suml13()))
+
         strRW = strRW + "<td>" + str(date) + "</td>"+"<td style='color:blue'>view</td>"+"<td>" + str(day[:3]) + "</td><td>"+str(week)+"</td><td>" + str(season) + "</td>"
         strRW = strRW + "<td>" + str(team) + "</td><td>" + str(opp) + "</td><td>" + str(site) + "</td>"
         strRW = strRW + "<td>" + str(q1) + "</td><td>" + str(q2) + "</td><td>" + str(q3) + "</td><td>"+ str(q4) + "</td>"
