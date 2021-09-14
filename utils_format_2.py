@@ -1,5 +1,6 @@
-from Data_format_2 import Data_format_2
-import datetime
+# from Data_format_2 import Data_format_2
+# import datetime
+
 
 # def checkseason(list1, list2):
 #     result = False
@@ -35,7 +36,6 @@ import datetime
 
 #     # page = page + header
 
-#     # page = page + "<body><div class='container-fluid  mt-4'>"
 #     page = ""
 
 #     row1 = '<div>'
@@ -74,7 +74,7 @@ import datetime
 #     table2 = table2 + strRW
 #     table2 = table2 + "</tbody></table>"
 
-#     row2 = '<div><div class=col-md-8>'+table2+'</div></div>'
+#     row2 = '<div class="row ml-4"><div class=col-md-8>'+table2+'</div></div>'
 
 
 #     table3 = "<table id=\"myTable2\" class='table table-bordered w-auto text-xsmall'><thead><tr>" \
@@ -96,6 +96,14 @@ import datetime
 #         strRW = "<tr>"
 #         date = datetime.datetime.strptime(str(date), '%Y%m%d').strftime('%b %d, %Y')
 
+#         # print(len(data.date),len(data.day),len(data.week),len(data.season),len(data.team),len(data.oteam),len(data.site),
+#         #                                             len(data.q1()),len(data.q2()),len(data.q3()),len(data.q4()),len(data.finalpoints()),len(data.closeline),len(data.closetotal),
+#         #                                                                  len(data.suml13()), len(data.atsmm13()), len(data.oumn13()),
+#         #                                                                  len(data.dpso13()),
+#         #                                                                  len(data.dpap13()), len(data.surq13()), len(data.atsr13()),
+#         #                                                                  len(data.ours13()),len(data.overtime))
+#         # print("Error: ", data.suml13(), len(data.suml13()))
+
 #         strRW = strRW + "<td>" + str(date) + "</td>"+"<td style='color:blue'>view</td>"+"<td>" + str(day[:3]) + "</td><td>"+str(week)+"</td><td>" + str(season) + "</td>"
 #         strRW = strRW + "<td>" + str(team) + "</td><td>" + str(opp) + "</td><td>" + str(site) + "</td>"
 #         strRW = strRW + "<td>" + str(q1) + "</td><td>" + str(q2) + "</td><td>" + str(q3) + "</td><td>"+ str(q4) + "</td>"
@@ -112,15 +120,16 @@ import datetime
 
 #     table3 = table3 + "</tbody></table>"
 
-#     row3 = '<div><div class=col-md-10>'+table3+'</div></div>'
+#     row3 = '<div class="row ml-4"><div class=col-md-10>'+table3+'</div></div>'
 
-#     # page = page + row1 +row2 + row3+"</div></body>"
+#     page = page + row1 +row2 + row3+"</div>"
 #     # page = page + "</html>"
-
-#     page = page + row1 + row2 + row3 + "</div>"
 
 #     return page
 
+
+from Data_format_2 import Data_format_2
+import datetime
 
 def checkseason(list1, list2):
     result = False
@@ -158,7 +167,9 @@ def tohtml(data,thisseason):
 
     page = ""
 
-    row1 = '<div>'
+    page = page + "<div class='container-fluid  mt-4'>"
+
+    row1 = '<div class="row ml-4">'
 
     top = "<table class='table table-bordered w-auto text-xsmall'><thead>"
     strRW = ""
@@ -216,14 +227,6 @@ def tohtml(data,thisseason):
         strRW = "<tr>"
         date = datetime.datetime.strptime(str(date), '%Y%m%d').strftime('%b %d, %Y')
 
-        # print(len(data.date),len(data.day),len(data.week),len(data.season),len(data.team),len(data.oteam),len(data.site),
-        #                                             len(data.q1()),len(data.q2()),len(data.q3()),len(data.q4()),len(data.finalpoints()),len(data.closeline),len(data.closetotal),
-        #                                                                  len(data.suml13()), len(data.atsmm13()), len(data.oumn13()),
-        #                                                                  len(data.dpso13()),
-        #                                                                  len(data.dpap13()), len(data.surq13()), len(data.atsr13()),
-        #                                                                  len(data.ours13()),len(data.overtime))
-        # print("Error: ", data.suml13(), len(data.suml13()))
-
         strRW = strRW + "<td>" + str(date) + "</td>"+"<td style='color:blue'>view</td>"+"<td>" + str(day[:3]) + "</td><td>"+str(week)+"</td><td>" + str(season) + "</td>"
         strRW = strRW + "<td>" + str(team) + "</td><td>" + str(opp) + "</td><td>" + str(site) + "</td>"
         strRW = strRW + "<td>" + str(q1) + "</td><td>" + str(q2) + "</td><td>" + str(q3) + "</td><td>"+ str(q4) + "</td>"
@@ -243,6 +246,5 @@ def tohtml(data,thisseason):
     row3 = '<div class="row ml-4"><div class=col-md-10>'+table3+'</div></div>'
 
     page = page + row1 +row2 + row3+"</div>"
-    # page = page + "</html>"
 
     return page

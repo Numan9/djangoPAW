@@ -42,7 +42,6 @@ def query_result(req):
 def login(req):
     email = req.data.get('email')
     password = req.data.get('password')
-    print(email, password)
     user = User.objects.filter(email=email).first()
 
     if user is None:
@@ -61,12 +60,12 @@ def login(req):
 
     token = jwt.encode(payload, 'secret', algorithm='HS256')
 
-    res = Response()
+    res = HttpResponse(JSONRenderer().render({'message': "Logged In"}), content_type='application/json')
     res.set_cookie(key='jwt', value=token, httponly=True)
 
-    res.data = {
-        'message': 'Logged In'
-    }
+    # res = {
+    #     'message': 'Logged In'
+    # }
 
     return res
 
@@ -96,9 +95,9 @@ def checkAuthentication(req):
 
 @api_view(['GET'])
 def logout(req):
-    res = Response()
+    res = HttpResponse(JSONRenderer().render({'message': "Logged Out"}), content_type='application/json')
     res.delete_cookie('jwt')
-    res.data = {
-        'message': 'Logged Out'
-    }
+    # res.data = {
+    #     'message': 'Logged Out'
+    # }
     return res
