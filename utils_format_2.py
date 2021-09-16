@@ -1,7 +1,6 @@
 # from Data_format_2 import Data_format_2
 # import datetime
 
-
 # def checkseason(list1, list2):
 #     result = False
 #     # traverse in the 1st list
@@ -38,7 +37,9 @@
 
 #     page = ""
 
-#     row1 = '<div>'
+#     page = page + "<div class='container-fluid  mt-4'>"
+
+#     row1 = '<div class="row ml-4">'
 
 #     top = "<table class='table table-bordered w-auto text-xsmall'><thead>"
 #     strRW = ""
@@ -96,14 +97,6 @@
 #         strRW = "<tr>"
 #         date = datetime.datetime.strptime(str(date), '%Y%m%d').strftime('%b %d, %Y')
 
-#         # print(len(data.date),len(data.day),len(data.week),len(data.season),len(data.team),len(data.oteam),len(data.site),
-#         #                                             len(data.q1()),len(data.q2()),len(data.q3()),len(data.q4()),len(data.finalpoints()),len(data.closeline),len(data.closetotal),
-#         #                                                                  len(data.suml13()), len(data.atsmm13()), len(data.oumn13()),
-#         #                                                                  len(data.dpso13()),
-#         #                                                                  len(data.dpap13()), len(data.surq13()), len(data.atsr13()),
-#         #                                                                  len(data.ours13()),len(data.overtime))
-#         # print("Error: ", data.suml13(), len(data.suml13()))
-
 #         strRW = strRW + "<td>" + str(date) + "</td>"+"<td style='color:blue'>view</td>"+"<td>" + str(day[:3]) + "</td><td>"+str(week)+"</td><td>" + str(season) + "</td>"
 #         strRW = strRW + "<td>" + str(team) + "</td><td>" + str(opp) + "</td><td>" + str(site) + "</td>"
 #         strRW = strRW + "<td>" + str(q1) + "</td><td>" + str(q2) + "</td><td>" + str(q3) + "</td><td>"+ str(q4) + "</td>"
@@ -123,9 +116,12 @@
 #     row3 = '<div class="row ml-4"><div class=col-md-10>'+table3+'</div></div>'
 
 #     page = page + row1 +row2 + row3+"</div>"
-#     # page = page + "</html>"
 
 #     return page
+
+
+
+
 
 
 from Data_format_2 import Data_format_2
@@ -167,7 +163,7 @@ def tohtml(data,thisseason):
 
     page = ""
 
-    page = page + "<div class='container-fluid  mt-4'>"
+    page = page + "<body><div class='container-fluid  mt-4'>"
 
     row1 = '<div class="row ml-4">'
 
@@ -217,9 +213,10 @@ def tohtml(data,thisseason):
               "<th style='color:blue'>OUm</th><th style='color:blue'>DPS</th>" \
                "<th style='color:blue'>DPA</th style='color:blue'><th style='color:blue'>SUr</th><th style='color:blue'>ATSr</th><th style='color:blue'>OUr</th><th style='color:blue'>ot</th></tr></thead><tbody>"
 
+
     for (date,day,week,season,team,opp,site,q1,q2,q3,q4,fp,cl,ct,sump13,m13,oumn13,dpso13,dpa13,surq13,astr13,ours13,ot) in zip(data.date,data.day,data.week,data.season,data.team,data.oteam,data.site,
                                                     data.q1(),data.q2(),data.q3(),data.q4(),data.finalpoints(),data.closeline,data.closetotal,
-                                                                         data.suml13(), data.atsmm13(), data.oumn13(),
+                                                                         data.suml13(True), data.atsmm13(), data.oumn13(),
                                                                          data.dpso13(),
                                                                          data.dpap13(), data.surq13(), data.atsr13(),
                                                                          data.ours13(),data.overtime

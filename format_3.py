@@ -22,9 +22,12 @@ def get_output_format(jsondata):
     
     tables = []
     for c in columns:
+        i = 0
         pt = PrettyTable()
         add_paddings(c)
         for header, column in zip(headers, c):
+            print(i)
+            i += 1
             pt.add_column(header, column)
         tables.append(pt)
 

@@ -33,6 +33,7 @@ def query_result(req):
             return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')
         data = JSONRenderer().render({'htmlString': htmlStr})
         response = HttpResponse(data, content_type='application/json')
+        print("EXITTTTTTTTTTTTT")
         return response
     except:
         return HttpResponse(JSONRenderer().render({'htmlString': "<h1 id=\"invalid-query\">Invalid Query</h1>"}), content_type='application/json')

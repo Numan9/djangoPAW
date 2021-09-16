@@ -520,14 +520,17 @@ class Data_format_2:
             sum.append(p + cl - op)
         return sum
 
-    def suml13(self):
+    def suml13(self,ignore=True):
         sum = []
         dt = datetime.datetime.today()
         today = datetime.datetime(dt.year, dt.month, dt.day)
         for (p, op,date) in zip(self.points, self.opoints,self.date):
-            date = datetime.datetime.strptime(str(date), '%Y%m%d')
-            if date < today:
-                sum.append(p-op)
+            if ignore == False:
+                date = datetime.datetime.strptime(str(date), '%Y%m%d')
+                if date < today:
+                    sum.append(p-op)
+            else:
+                sum.append(p - op)
         return sum
     # B3
     def ATS(self):
@@ -625,7 +628,7 @@ class Data_format_2:
             w = (points - opoints) / len(self.points)
         except:
             pass
-        suml13 = self.suml13()
+        suml13 = self.suml13(True)
         tie = 0
         for s in suml13:
             if s == 0:
@@ -797,3 +800,8 @@ class Data_format_2:
         except:
             pass
         return res
+
+
+
+
+

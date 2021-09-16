@@ -4,18 +4,6 @@ from prettytable import PrettyTable
 
 token="eS1waYB1pt5B"
 
-def fnhas_operator(checkme,operators):
-    foundit=0
-    for symbol in operators:
-        if symbol in checkme:
-            foundit=1
-            break
-    return foundit
-
-
-# In[4]:
-
-
 def fnget_shortcuts():
     
     shortcuts=dict()
@@ -77,7 +65,7 @@ def fnget_shortcuts():
     shortcuts.update({"tp:ATSL": "((tp:points+tp:line<too:points) as 'tp:ATSL'"})
     shortcuts.update({"to:ATSL": "(to:points+to:line<poo:points) as 'to:ATSL'"})
     shortcuts.update({"op:ATSL": "(op:points+op:line<oto:points) as 'op:ATSL'"})
-    shortcuts.update({"ATSL": "(points+line<tp:points) as 'ATSL'"})
+    shortcuts.update({"ATSL": "(points+line<to:points) as 'ATSL'"})
     shortcuts.update({"tS(ATSW)": "Sum((points+line>tp:points) as 'ATSW')"})
     shortcuts.update({"tpS(ATSW)": "(Sum((points+line>tp:points) as 'ATSW'@ team and season)[ team and season-1]) as 'tpS(ATSW)'"})
     shortcuts.update({"tA(ATSW)": "average((points+line>tp:points) as 'ATSW'@ team and season) as 'tA(ATSW)'"})
@@ -90,7 +78,7 @@ def fnget_shortcuts():
     shortcuts.update({"tp:ATSW": "((tp:points+tp:line>too:points) as 'tp:ATSW'"})
     shortcuts.update({"to:ATSW": "(to:points+to:line>poo:points) as 'to:ATSW'"})
     shortcuts.update({"op:ATSW": "(op:points+op:line>oto:points) as 'op:ATSW'"})
-    shortcuts.update({"ATSW": "(points+line>tp:points) as 'ATSW'"})
+    shortcuts.update({"ATSW": "(points+line>to:points) as 'ATSW'"})
     shortcuts.update({"tS(NDIV)": "Sum((division!=to:division) as 'NDIV'@ team and season) as 'tS(NDIV)'"})
     shortcuts.update({"tA(NDIV)": "average((division!=to:division) as 'NDIV'@ team and season) as 'tA(NDIV)'"})
     shortcuts.update({"tpS(NDIV)": "(Sum((division!=to:division) as 'NDIV'@ team and season)[ team and season-1]) as 'tpS(NDIV)'"})
@@ -1045,7 +1033,7 @@ def fncount_p(prefix):
     return _p
 
 
-# In[8]:
+# In[9]:
 
 
 def fn_ok_to_add_quotes(string):
@@ -1062,7 +1050,7 @@ def fn_ok_to_add_quotes(string):
     return add_quote
 
 
-# In[9]:
+# In[10]:
 
 
 def add_paddings(c):
@@ -1075,7 +1063,7 @@ def add_paddings(c):
             lst += ['-'] * (max_list - len(lst))
 
 
-# In[10]:
+# In[11]:
 
 
 def fncount_summatives(q):
@@ -1097,7 +1085,7 @@ def fncount_summatives(q):
     return _c
 
 
-# In[11]:
+# In[12]:
 
 
 def fnstrip_alias(q):
@@ -1131,7 +1119,7 @@ def fnstrip_alias(q):
     return newq
 
 
-# In[12]:
+# In[13]:
 
 
 def fnchop_sdql(q):
@@ -1183,7 +1171,7 @@ def fnchop_sdql(q):
     return sdql_parts
 
 
-# In[13]:
+# In[14]:
 
 
 def fngrouping_format_check(groupby,check_data):
@@ -1226,7 +1214,7 @@ def fngrouping_format_check(groupby,check_data):
     return grouping,grouper
 
 
-# In[14]:
+# In[15]:
 
 
 def fncolumn_format_check_orig(check_data):
@@ -1255,7 +1243,7 @@ def fncolumn_format_check_orig(check_data):
     return column_format    
 
 
-# In[15]:
+# In[16]:
 
 
 def fncolumn_format_check(q):
@@ -1276,7 +1264,7 @@ def fncolumn_format_check(q):
     return column_format
 
 
-# In[16]:
+# In[17]:
 
 
 def fnget_strings():
@@ -1294,7 +1282,7 @@ def fnget_strings():
     return strings
 
 
-# In[17]:
+# In[18]:
 
 
 def fncolumn_format(data,headers,columns):
@@ -1336,7 +1324,7 @@ def fncolumn_format(data,headers,columns):
     return(html)
 
 
-# In[18]:
+# In[19]:
 
 
 def fncrawler(q,spos,epos,break_on):
@@ -1366,7 +1354,7 @@ def fncrawler(q,spos,epos,break_on):
         
 
 
-# In[19]:
+# In[20]:
 
 
 def fnget_single_parts(sdql_data):
@@ -1441,7 +1429,7 @@ def fnget_single_parts(sdql_data):
     return single_parts
 
 
-# In[20]:
+# In[21]:
 
 
 def fnhas_operator(checkme,operators):
@@ -1456,7 +1444,7 @@ def fnhas_operator(checkme,operators):
     return foundit
 
 
-# In[21]:
+# In[22]:
 
 
 def fnget_inside_parts(inside):
@@ -1474,7 +1462,7 @@ def fnget_inside_parts(inside):
     return inside_parts
 
 
-# In[22]:
+# In[23]:
 
 
 def fnget_summative_start_end(string):
@@ -1519,7 +1507,7 @@ def fnget_summative_start_end(string):
     return s_pos,e_pos
 
 
-# In[23]:
+# In[24]:
 
 
 def fnget_num_past_season(sumdata):
@@ -1553,7 +1541,7 @@ def fnget_num_past_season(sumdata):
     return sumdata,num_past_season
 
 
-# In[24]:
+# In[25]:
 
 
 ##### tS(...) tA(...) tp
@@ -1635,7 +1623,7 @@ def fnexpand_t(query,num_past_season):
     return new_query
 
 
-# In[25]:
+# In[26]:
 
 
 def fnexpand_o(query,num_past_season):
@@ -1713,7 +1701,7 @@ def fnexpand_o(query,num_past_season):
     return new_query
 
 
-# In[26]:
+# In[27]:
 
 
 def fnget_expanded_querylist(query):
@@ -1739,7 +1727,7 @@ def fnget_expanded_querylist(query):
     return expanded_querylist
 
 
-# In[27]:
+# In[28]:
 
 
 def fnget_replace_dict(expanded_querylist):
@@ -1763,7 +1751,7 @@ def fnget_replace_dict(expanded_querylist):
     return replace_dict
 
 
-# In[28]:
+# In[29]:
 
 
 def fnget_parameters_conditions(q):
@@ -1795,7 +1783,7 @@ def fnget_parameters_conditions(q):
     return parameters,conditions
 
 
-# In[29]:
+# In[30]:
 
 
 def fnget_newquery_list(expanded_querylist,ordered_replace_dict):
@@ -1847,7 +1835,7 @@ def fnget_newquery_list(expanded_querylist,ordered_replace_dict):
     return new_querylist
 
 
-# In[30]:
+# In[31]:
 
 
 def fnget_sdql_data(new_querylist):
@@ -1875,7 +1863,7 @@ def fnget_sdql_data(new_querylist):
     return sdql_data
 
 
-# In[31]:
+# In[32]:
 
 
 def fnfix_strings(sdql_parts):
@@ -1944,7 +1932,7 @@ def fnfix_strings(sdql_parts):
     return (tsdql_parts)
 
 
-# In[32]:
+# In[33]:
 
 
 def fnget_ordered_dict(replace_dict):
@@ -1956,7 +1944,7 @@ def fnget_ordered_dict(replace_dict):
     return ordered_replace_dict
 
 
-# In[33]:
+# In[34]:
 
 
 def fncheck_lines(sdql_data,lines,money_lines,totals):
@@ -2043,16 +2031,16 @@ def fnapi(sdql, groupby):
     return converted_query, format_no, grouper
 
 def get_converted_query(query):
-    query=query.replace('NFC','nfc').replace('AFC','afc').replace('West','west').replace('Central','central').replace('North','north')
+    query = query.replace('NFC','nfc').replace('AFC','afc').replace('West','west').replace('Central','central').replace('North','north')
     expanded_querylist=fnget_expanded_querylist(query)
     replace_dict=fnget_replace_dict(expanded_querylist)
     ordered_replace_dict=fnget_ordered_dict(replace_dict)
     new_querylist=fnget_newquery_list(expanded_querylist,ordered_replace_dict)
     sdql_data=fnget_sdql_data(new_querylist)
-    
+
     sdql_data=fnfix_strings(sdql_data)
     sdql_data=fncheck_lines(sdql_data,lines,money_lines,totals)
-    sdql=' '.join(sdql_data).replace('Team:','').replace('> =','>=').replace('< =','<=').replace('average','Average').replace('nfc','NFC').replace('afc','AFC').replace('west','West').replace('central','Central').replace('north','North').replace('o:o:','oo:')
+    sdql=' '.join(sdql_data).replace('Team:','').replace('> =','>=').replace('< =','<=').replace('average','Average').replace('nfc','NFC').replace('afc','AFC').replace('west','West').replace('central','Central').replace('north','North').replace('o:o:','oo:').replace('time_zone','time zone')
     converted_query, format_no, grouper = fnapi(sdql, groupby)
     return converted_query, format_no, grouper
 
